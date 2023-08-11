@@ -27,7 +27,7 @@
                         <div class="form-group mb-3">
                             <label for="parent" class="form-label">{{ __('VarenykyBlog::labels.category') }}</label>
                             <select name="parent" class="form-select" aria-label="Default select example">
-                                <option value="">{{ __('varenyky::labels.choice') }}</option>
+                                <option value="0">{{ __('varenyky::labels.choice') }}</option>
                                 @foreach ($parents as $parent)
                                     <option value="{{ $parent->id }}">{{ $parent->name }}</option>
                                 @endforeach

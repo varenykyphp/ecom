@@ -59,4 +59,15 @@ return [
             'title' => 'Edit Order',
         ],
     ],
+    'coupons' => [
+        'index' => [
+            'title' => 'Coupons',
+        ],
+        'create' => [
+            'title' => 'Create Coupon',
+        ],
+        'edit' => [
+            'title' => 'Edit Coupon',
+        ],
+    ],
 ];

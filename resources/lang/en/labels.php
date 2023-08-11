@@ -41,4 +41,10 @@ return [
     'tax' => 'Tax',
     'payment' => 'Payment',
     'shipping' => 'Shipping',
+    'description' => 'Description',
+    'amount' => 'Amount',
+    'expires_at' => 'Expires at',
+    'usage_limit' => 'Usage limit',
+    'active' => 'Is active',
+    'code' => 'Coupon code',
 ];

@@ -48,7 +48,6 @@ class CategoryController extends BaseController
         ]);
 
         $create = $request->except(['_token']);
-
         $this->repository->create($create);
 
         return redirect()->route('admin.categories.index')->with('success', __('VarenykyECom::labels.added'));
@@ -68,8 +67,7 @@ class CategoryController extends BaseController
     public function edit(Category $category): View
     {
         $parents = Category::all();
-        
-        return view('VarenykyECom::ecom.categories.edit', compact('category', 'parents'));
+        return view('VarenykyECom::categories.edit', compact('category', 'parents'));
     }
 
     /**
