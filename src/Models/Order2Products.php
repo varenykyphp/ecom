@@ -18,5 +18,8 @@ class Order2Products extends Model
         'status',
         'tax_rate_id',
     ];
-
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

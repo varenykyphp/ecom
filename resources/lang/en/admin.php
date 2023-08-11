@@ -70,4 +70,15 @@ return [
             'title' => 'Edit Coupon',
         ],
     ],
+    'products' => [
+        'index' => [
+            'title' => 'Products',
+        ],
+        'create' => [
+            'title' => 'Create product',
+        ],
+        'edit' => [
+            'title' => 'Edit product',
+        ],
+    ],
 ];

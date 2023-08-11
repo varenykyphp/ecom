@@ -92,9 +92,6 @@
                                 @else
                                     Single order<br>
                                 @endif
-                                Materiaal: {{ $row->product->name }}<br>
-                                Formaat: {{ $row->product->width }} cm x{{ $row->product->height }} cm<br>
-                                Systeem: {{ $row->product->name }}<br>
                             </td>
                             <td>{{ $row->quantity }}x</td>
                             <td>&euro; {{ number_format($row->subtotal, 2, ",", ".") }}</td>
