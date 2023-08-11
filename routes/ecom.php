@@ -9,6 +9,7 @@ use VarenykyECom\Http\Controllers\CategoryController;
 use VarenykyECom\Http\Controllers\BrandController;
 use VarenykyECom\Http\Controllers\CouponController;
 use VarenykyECom\Http\Controllers\OrderController;
+use VarenykyECom\Http\Controllers\ProductController;
 use VarenykyECom\Http\Controllers\TaxRateController;
 use VarenykyECom\Http\Controllers\TaxClassController;
 
@@ -20,5 +21,6 @@ Route::prefix(config('varenyky.path'))->name('admin.')->middleware(resolve(Kerne
         Route::resource('/taxclasses', TaxClassController::class);
         Route::resource('/orders', OrderController::class); 
         Route::resource('/coupons', CouponController::class);
+        Route::resource('/products', ProductController::class);
     });
 });
