@@ -84,24 +84,24 @@
                     <th>{{ __('VarenykyECom::labels.total') }}</th>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($order->rows as $row)
+                    @foreach ($order->rows as $row)
                         <tr>
                             <td>
-                                @if($row->product->translate(1) !== null)
-                                    {{ $row->product->translate(1)->name }}<br>
+                                @if($row->product !== null)
+                                    {{ $row->product->name }}<br>
                                 @else
                                     Single order<br>
                                 @endif
-                                Materiaal: {{ $row->material->name_1 }}<br>
-                                Formaat: {{ $row->format->width }} cm x{{ $row->format->height }} cm<br>
-                                Systeem: {{ $row->system->name_1 }}<br>
+                                Materiaal: {{ $row->product->name }}<br>
+                                Formaat: {{ $row->product->width }} cm x{{ $row->product->height }} cm<br>
+                                Systeem: {{ $row->product->name }}<br>
                             </td>
                             <td>{{ $row->quantity }}x</td>
                             <td>&euro; {{ number_format($row->subtotal, 2, ",", ".") }}</td>
                             <td>&euro; {{ number_format($row->tax, 2, ",", ".") }}</td>
                             <td>&euro; {{ number_format($row->total, 2, ",", ".") }}</td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>

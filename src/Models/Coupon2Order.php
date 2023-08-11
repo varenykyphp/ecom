@@ -12,4 +12,9 @@ class Coupon2Order extends Model
         'coupon_id',
         'order_id',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(product::class);
+    }
 }

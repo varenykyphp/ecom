@@ -5,7 +5,7 @@ namespace VarenykyECom\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Order2Products extends Model
 {
     use HasFactory;
     protected $fillable = [

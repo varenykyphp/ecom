@@ -28,4 +28,8 @@ class Order extends Model
     {
         return $this->belongsTo(Customer::class, 'billing_customer_id', 'id');
     }
+    public function rows()
+    {
+        return $this->hasMany(Order2Products::class);
+    }
 }
