@@ -47,5 +47,16 @@ return [
         'edit' => [
             'title' => 'Edit tax rate',
         ],
-    ]
+    ],
+    'orders' => [
+        'index' => [
+            'title' => 'Orders',
+        ],
+        'create' => [
+            'title' => 'Create Order',
+        ],
+        'edit' => [
+            'title' => 'Edit Order',
+        ],
+    ],
 ];
