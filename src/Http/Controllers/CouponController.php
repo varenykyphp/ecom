@@ -6,9 +6,8 @@ use VarenykyECom\Models\Coupon;
 use Illuminate\Http\Request;
 use VarenykyECom\Models\Customer;
 use VarenykyECom\Repositories\CouponRepository;
-use Varenyky\Http\Controllers\BaseController;
 
-class CouponController extends BaseController
+class CouponController extends Controller
 {
     public function __construct(CouponRepository $repository)
     {

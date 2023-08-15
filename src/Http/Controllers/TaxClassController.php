@@ -7,9 +7,8 @@ use VarenykyECom\Repositories\TaxClassRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use Varenyky\Http\Controllers\BaseController;
 
-class TaxClassController extends BaseController
+class TaxClassController extends Controller
 {
     
     public function __construct(TaxClassRepository $repository)

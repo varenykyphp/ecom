@@ -5,11 +5,10 @@ namespace VarenykyECom\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use Varenyky\Http\Controllers\BaseController;
 use VarenykyECom\Models\Order;
 use VarenykyECom\Repositories\OrderRepository;
 
-class OrderController extends BaseController
+class OrderController extends Controller
 {
     
     public function __construct(OrderRepository $repository)

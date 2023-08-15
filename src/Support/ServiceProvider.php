@@ -3,6 +3,7 @@
 namespace VarenykyECom\Support;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use VarenykyECom\Support\EComSearchEngineFactory;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -11,6 +12,9 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register(): void
     {
+        $this->app->singleton(EComSearchEngineFactory::class, function ($app) {
+            return new EComSearchEngineFactory();
+        });
     }   
 
     /**

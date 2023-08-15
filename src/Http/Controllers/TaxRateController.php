@@ -8,9 +8,8 @@ use VarenykyECom\Repositories\TaxRateRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use Varenyky\Http\Controllers\BaseController;
 
-class TaxRateController extends BaseController
+class TaxRateController extends Controller
 {
     
     public function __construct(TaxRateRepository $repository)

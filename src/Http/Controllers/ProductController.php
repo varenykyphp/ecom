@@ -11,10 +11,9 @@ use VarenykyECom\Repositories\ImageRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use Varenyky\Http\Controllers\BaseController;
 use Illuminate\Support\Str;
 
-class ProductController extends BaseController
+class ProductController extends Controller
 {
     
     public function __construct(ProductRepository $repository, ImageRepository $imageRepository)

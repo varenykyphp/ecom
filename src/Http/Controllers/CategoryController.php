@@ -8,9 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Varenyky\Http\Controllers\BaseController;
 
-class CategoryController extends BaseController
+class CategoryController extends Controller
 {
     
     public function __construct(CategoryRepository $repository)
