@@ -58,4 +58,9 @@ return [
     'height' => 'Height',
     'weight' => 'Weight',
     'stock' => 'Stock',
+    'in_mm' => 'In Mm',
+    'in_grams' => 'In Grams',
+    'image' => 'Image',
+    'url' => 'Url'
+
 ];
