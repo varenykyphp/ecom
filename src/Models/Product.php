@@ -21,6 +21,7 @@ class Product extends Model
         'width',
         'height',
         'weight',
+        'stock',
     ];
 
     public function category()
@@ -37,5 +38,4 @@ class Product extends Model
     {
         return $this->hasMany(Image::class, 'product_id')->orderBy('sort_order');
     }
-
 }

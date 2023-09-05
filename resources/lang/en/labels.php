@@ -57,4 +57,5 @@ return [
     'width' => 'Width',
     'height' => 'Height',
     'weight' => 'Weight',
+    'stock' => 'Stock',
 ];
