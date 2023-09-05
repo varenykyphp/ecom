@@ -61,6 +61,7 @@ return [
     'in_mm' => 'In Mm',
     'in_grams' => 'In Grams',
     'image' => 'Image',
-    'url' => 'Url'
+    'url' => 'Url',
+    'is_active' => 'Is Active'
 
 ];

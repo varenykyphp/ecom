@@ -113,6 +113,10 @@
                     <input id="sort_order" type="number" placeholder="{{ __('VarenykyECom::labels.sort_order') }}..." name="sort_order" class="form-control @if ($errors->has('sort_order')) is-invalid @endif" value="{{ $image->sort_order }}">
                 </div>
 
+                <div class="form-group mb-3">
+                    <label for="is_active" class="@if ($errors->has('is_active')) text-danger @endif">{{ __('VarenykyECom::labels.is_active')}}</label>
+                    <input id="is_active" type="number" placeholder="{{ __('VarenykyECom::labels.is_active') }}..." name="is_active" class="form-control @if ($errors->has('is_active')) is-invalid @endif" value="{{ $product->is_active }}">
+                </div>
             </div>
         </div>
     </div>
