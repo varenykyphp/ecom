@@ -33,7 +33,7 @@
             @endforelse
         </tbody>
     </table>
-    {{--  {!! $coupons->links() !!} --}}
+    {!! $coupons->links() !!}
 @stop
 
 @section('js')

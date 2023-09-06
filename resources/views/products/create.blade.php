@@ -57,13 +57,13 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="stock" class="@if ($errors->has('stock')) text-danger @endif">{{ __('VarenykyECom::labels.stock') }}</label>
-                    <input id="stock" type="number" step="0.01" placeholder="{{ __('VarenykyECom::labels.stock') }}..." name="stock" class="form-control @if ($errors->has('stock')) is-invalid @endif" value="{{ old('stock') }}">
+                    <label for="sale_price" class="@if ($errors->has('sale_price')) text-danger @endif">{{ __('VarenykyECom::labels.sale_price') }}</label>
+                    <input id="sale_price" type="number" step="0.01" placeholder="{{ __('VarenykyECom::labels.sale_price') }}..." name="sale_price" class="form-control @if ($errors->has('sale_price')) is-invalid @endif" value="{{ old('sale_price') }}">
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="sale_price" class="@if ($errors->has('sale_price')) text-danger @endif">{{ __('VarenykyECom::labels.sale_price') }}</label>
-                    <input id="sale_price" type="number" step="0.01" placeholder="{{ __('VarenykyECom::labels.sale_price') }}..." name="sale_price" class="form-control @if ($errors->has('sale_price')) is-invalid @endif" value="{{ old('sale_price') }}">
+                    <label for="stock" class="@if ($errors->has('stock')) text-danger @endif">{{ __('VarenykyECom::labels.stock') }}</label>
+                    <input id="stock" type="number" step="0.01" placeholder="{{ __('VarenykyECom::labels.stock') }}..." name="stock" class="form-control @if ($errors->has('stock')) is-invalid @endif" value="{{ old('stock') }}">
                 </div>
 
                 <div class="form-group mb-3">
@@ -97,15 +97,14 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="url" class="@if ($errors->has('url')) text-danger @endif">{{ __('VarenykyECom::labels.image')." ". __('VarenykyECom::labels.url') }}</label>
+                    <label for="url" class="@if ($errors->has('url')) text-danger @endif">{{ __('VarenykyECom::labels.image') }}</label>
                     <input id="url" type="file" placeholder="{{ __('VarenykyECom::labels.url') }}..." name="url" class="form-control @if ($errors->has('url')) is-invalid @endif" value="{{ old('url') }}">
                 </div>
 
-                <div class="form-group mb-3">
+                {{-- <div class="form-group mb-3">
                     <label for="sort_order" class="@if ($errors->has('sort_order')) text-danger @endif">{{ __('VarenykyECom::labels.image')." ". __('VarenykyECom::labels.sort_order') }}</label>
                     <input id="sort_order" type="number" placeholder="{{ __('VarenykyECom::labels.sort_order') }}..." name="sort_order" class="form-control @if ($errors->has('sort_order')) is-invalid @endif" value="{{ old('sort_order') }}">
-                </div>
-
+                </div> --}}
 
             </div>
         </div>

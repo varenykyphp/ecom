@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -54,18 +55,22 @@ class ProductController extends Controller
 
         $product = $this->repository->create($create);
         
-        $image = $request->only('sort_order');
-        $image['product_id'] = $product->id;
-
+        $sort_order = Image::where('product_id', $product->id)->max('sort_order') ?? 0;
+    
         if ($request->hasFile('url')) {
             $file = $request->url;
             $filename = date('Y_m_d_His').'_'.str_replace(' ', '', $file->getClientOriginalName());
             $file->move(public_path('images/products/'), $filename);
-            unset($image['url']);
-            $image['url'] = '/images/products/'.$filename;
+            
+            $image = new Image([
+                'product_id' => $product->id,
+                'sort_order' => $sort_order + 1,
+                'url' => '/images/products/' . $filename,
+            ]);
         }
 
-        $this->imageRepository->create($image);
+        $image->save();
+        $sort_order++;
 
         return redirect()->route('admin.products.index')->with('success', __('VarenykyECom::labels.added'));
     }
@@ -86,8 +91,10 @@ class ProductController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         $image = Image::where('product_id', $product->id)->first();
+        $images = Image::where('product_id', $product->id)->get();
 
-        return view('VarenykyECom::products.edit', compact('product', 'categories', 'brands', 'image'));
+
+        return view('VarenykyECom::products.edit', compact('product', 'categories', 'brands', 'image', 'images'));
     }
 
     /**
@@ -95,27 +102,28 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product): RedirectResponse
     {
-
         $update = array_filter($request->except(['_token', '_method', 'sort_order', 'url']));
         $update['slug'] = Str::slug($request->input('name'));
 
         $this->repository->update($product->id, $update);
         
-        $image = Image::where('product_id', $product->id)->first();
-
-        $image_update = $request->only('sort_order');
-        $image_update['product_id'] = $product->id;
+        $sort_order = Image::where('product_id', $product->id)->max('sort_order') ?? 0;
 
         if ($request->hasFile('url')) {
-            $file = $request->url;
-            $filename = date('Y_m_d_His').'_'.str_replace(' ', '', $file->getClientOriginalName());
-            $file->move(public_path('images/products/'), $filename);
-            unset($image_update['url']);
-            $image_update['url'] = '/images/products/'.$filename;
+            foreach ($request->file('url') as $file) {
+                $filename = date('Y_m_d_His') . '_' . str_replace(' ', '', $file->getClientOriginalName());
+                $file->move(public_path('images/products/'), $filename);
+
+                $image = new Image([
+                    'product_id' => $product->id,
+                    'sort_order' => $sort_order + 1,
+                    'url' => '/images/products/' . $filename,
+                ]);
+
+                $image->save();
+                $sort_order++;
+            }
         }
-
-        $this->imageRepository->update($image->id, $image_update);
-
 
         return redirect()->route('admin.products.edit', $product->id)->with('success', __('VarenykyECom::labels.updated'));
     }
@@ -128,5 +136,13 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('admin.products.index')->with('success', __('VarenykyECom::labels.deleted'));
+    }
+
+    public function deleteImage(Image $image)
+    {
+        Storage::delete($image->url);
+        $image->delete();
+        
+        return redirect()->back()->with('success', 'Image deleted successfully.');
     }
 }

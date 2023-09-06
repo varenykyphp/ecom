@@ -38,5 +38,6 @@
                 @endforelse
             </tbody>
         </table>
+        {!! $taxrates->links() !!}
     </div>
 @endsection
