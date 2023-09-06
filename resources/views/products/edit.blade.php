@@ -47,6 +47,15 @@
                 </div>
 
                 <div class="form-group mb-3">
+                    <label for="is_active" class="@if ($errors->has('is_active')) text-danger @endif">{{ __('VarenykyECom::labels.is_active') }}</label>
+                    <select id="is_active" name="is_active" class="form-control @if ($errors->has('is_active')) is-invalid @endif">
+                        <option value="">{{ __('varenyky::labels.choice') }}</option>
+                        <option value="1" {{ $product->is_active == 1 ? 'selected' : '' }}>{{ __('varenyky::labels.yes') }}</option>
+                        <option value="0" {{ $product->is_active == 0 ? 'selected' : '' }}>{{ __('varenyky::labels.no') }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
                     <label for="short_description" class="@if ($errors->has('short_description')) text-danger @endif">{{ __('VarenykyECom::labels.short_description') }}</label>
                     <input id="short_description" type="text" placeholder="{{ __('VarenykyECom::labels.short_description') }}..." name="short_description" class="form-control @if ($errors->has('short_description')) is-invalid @endif" value="{{ $product->short_description }}">
                 </div>
@@ -62,13 +71,13 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="stock" class="@if ($errors->has('stock')) text-danger @endif">{{ __('VarenykyECom::labels.stock') }}</label>
-                    <input id="stock" type="number" step="0.01" placeholder="{{ __('VarenykyECom::labels.stock') }}..." name="stock" class="form-control @if ($errors->has('stock')) is-invalid @endif" value="{{ $product->stock }}">
+                    <label for="sale_price" class="@if ($errors->has('sale_price')) text-danger @endif">{{ __('VarenykyECom::labels.sale_price') }}</label>
+                    <input id="sale_price" type="number" step="0.01" placeholder="{{ __('VarenykyECom::labels.sale_price') }}..." name="sale_price" class="form-control @if ($errors->has('sale_price')) is-invalid @endif" value="{{ $product->sale_price }}">
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="sale_price" class="@if ($errors->has('sale_price')) text-danger @endif">{{ __('VarenykyECom::labels.sale_price') }}</label>
-                    <input id="sale_price" type="number" step="0.01" placeholder="{{ __('VarenykyECom::labels.sale_price') }}..." name="sale_price" class="form-control @if ($errors->has('sale_price')) is-invalid @endif" value="{{ $product->sale_price }}">
+                    <label for="stock" class="@if ($errors->has('stock')) text-danger @endif">{{ __('VarenykyECom::labels.stock') }}</label>
+                    <input id="stock" type="number" step="0.01" placeholder="{{ __('VarenykyECom::labels.stock') }}..." name="stock" class="form-control @if ($errors->has('stock')) is-invalid @endif" value="{{ $product->stock }}">
                 </div>
 
                 <div class="form-group mb-3">
@@ -100,25 +109,45 @@
                     <label for="weight" class="@if ($errors->has('weight')) text-danger @endif">{{ __('VarenykyECom::labels.weight')." ". __('VarenykyECom::labels.in_grams') }}</label>
                     <input id="weight" type="number" placeholder="{{ __('VarenykyECom::labels.weight') }}..." name="weight" class="form-control @if ($errors->has('weight')) is-invalid @endif" value="{{ $product->weight }}">
                 </div>
+            </div>
 
+            <div class="card border p-3">
                 <div class="form-group mb-3">
-                    <label for="url" class="@if ($errors->has('url')) text-danger @endif">{{ __('VarenykyECom::labels.image')." ". __('VarenykyECom::labels.url') }}</label>
-                    <br>
-                    <img src="{{ $image->url }}" alt="image" style="width: 200px;"><br><br>
-                    <input id="url" type="file" placeholder="{{ __('VarenykyECom::labels.url') }}..." name="url" class="form-control @if ($errors->has('url')) is-invalid @endif">
+                    <label for="url" class="mb-2 @if ($errors->has('url')) text-danger @endif">{{ __('VarenykyECom::labels.product')." ". __('VarenykyECom::labels.images') }}</label>
+                    <input id="url" type="file" placeholder="{{ __('VarenykyECom::labels.url') }}..." name="url[]" class="form-control @if ($errors->has('url')) is-invalid @endif" multiple>
                 </div>
 
-                <div class="form-group mb-3">
-                    <label for="sort_order" class="@if ($errors->has('sort_order')) text-danger @endif">{{ __('VarenykyECom::labels.image')." ". __('VarenykyECom::labels.sort_order') }}</label>
-                    <input id="sort_order" type="number" placeholder="{{ __('VarenykyECom::labels.sort_order') }}..." name="sort_order" class="form-control @if ($errors->has('sort_order')) is-invalid @endif" value="{{ $image->sort_order }}">
+            </form>
+                <div class="card border p-3">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-dark">
+                                <th>{{ __('VarenykyECom::labels.images') }}</th>
+                                <th width="350"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($images as $image)
+                            <tr>
+                                <td><img src="{{ $image->url }}" alt="image" style="width: 150px;"></td>
+                                <td align="right">
+                                    <form action="{{ route('admin.product.image.delete', $image) }}" method="POST" style="display:inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt me-2"></i>{{ __('varenyky::labels.delete') }}</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="3">{{ __('varenyky::labels.empty') }}</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
 
-                <div class="form-group mb-3">
-                    <label for="is_active" class="@if ($errors->has('is_active')) text-danger @endif">{{ __('VarenykyECom::labels.is_active')}}</label>
-                    <input id="is_active" type="number" placeholder="{{ __('VarenykyECom::labels.is_active') }}..." name="is_active" class="form-control @if ($errors->has('is_active')) is-invalid @endif" value="{{ $product->is_active }}">
-                </div>
             </div>
         </div>
     </div>
-</form>
 @endsection
