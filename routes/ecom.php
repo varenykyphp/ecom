@@ -21,6 +21,8 @@ Route::prefix(config('varenyky.path'))->name('admin.')->middleware(resolve(Kerne
         Route::resource('/taxclasses', TaxClassController::class);
         Route::resource('/orders', OrderController::class); 
         Route::resource('/coupons', CouponController::class);
+        Route::delete('/products/images/{image}', [ProductController::class, 'deleteImage'])->name('product.image.delete');
         Route::resource('/products', ProductController::class);
+        
     });
 });

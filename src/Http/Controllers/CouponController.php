@@ -18,7 +18,7 @@ class CouponController extends Controller
      */
     public function index()
     {
-        $coupons = $this->repository->getAll();
+        $coupons = $this->repository->getAllPaginated();
         return view('VarenykyECom::coupons.index',compact('coupons'));
     }
 

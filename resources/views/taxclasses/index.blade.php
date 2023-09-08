@@ -32,5 +32,6 @@
                 @endforelse
             </tbody>
         </table>
+        {!! $taxclasses->links() !!}
     </div>
 @endsection

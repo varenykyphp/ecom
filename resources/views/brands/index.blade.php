@@ -32,5 +32,6 @@
                 @endforelse
             </tbody>
         </table>
+        {!! $brands->links() !!}
     </div>
 @endsection

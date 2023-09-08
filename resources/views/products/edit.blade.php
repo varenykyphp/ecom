@@ -16,7 +16,7 @@
     @method('PUT')
     <div class="row">
         <div class="col-12 col-lg-12">
-            <div class="card border p-3">
+            <div class="card border p-3 mb-3">
                 <div class="form-group mb-3">
                     <label for="name" class="@if ($errors->has('name')) text-danger @endif">{{ __('VarenykyECom::labels.name') }}</label>
                     <input id="name" type="text" placeholder="{{ __('VarenykyECom::labels.name') }}..." name="name" class="form-control @if ($errors->has('name')) is-invalid @endif" value="{{ $product->name }}">
@@ -67,12 +67,12 @@
 
                 <div class="form-group mb-3">
                     <label for="price" class="@if ($errors->has('price')) text-danger @endif">{{ __('VarenykyECom::labels.price') }}</label>
-                    <input id="price" type="number" step="0.01" placeholder="{{ __('VarenykyECom::labels.price') }}..." name="price" class="form-control @if ($errors->has('price')) is-invalid @endif" value="{{ $product->price }}">
+                    <input id="price" type="number" step="0.01" placeholder="{{ __('VarenykyECom::labels.price') }}..." name="price" class="form-control @if ($errors->has('price')) is-invalid @endif" value="{{ number_format($product->price, 2) }}">
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="sale_price" class="@if ($errors->has('sale_price')) text-danger @endif">{{ __('VarenykyECom::labels.sale_price') }}</label>
-                    <input id="sale_price" type="number" step="0.01" placeholder="{{ __('VarenykyECom::labels.sale_price') }}..." name="sale_price" class="form-control @if ($errors->has('sale_price')) is-invalid @endif" value="{{ $product->sale_price }}">
+                    <input id="sale_price" type="number" step="0.01" placeholder="{{ __('VarenykyECom::labels.sale_price') }}..." name="sale_price" class="form-control @if ($errors->has('sale_price')) is-invalid @endif" value="{{ number_format($product->price, 2) }}">
                 </div>
 
                 <div class="form-group mb-3">
@@ -118,6 +118,7 @@
                 </div>
 
             </form>
+
                 <div class="card border p-3">
                     <table class="table">
                         <thead>
