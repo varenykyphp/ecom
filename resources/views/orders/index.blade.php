@@ -26,7 +26,7 @@
                         <td>{{ $order->uuid }}</td>
                         <td>{{ $order->created_at }}</td>
                         <td>{{ $order->delivery->name }}</td>
-                        <td>{{ $order->total }}</td>
+                        <td>&dollar; {{ number_format($order->total,2) }}</td>
                         <td>{{ $order->status }}</td>
                         <td align="right">
                             <a href="{{ route("admin.orders.show", $order) }}" class="btn btn-sm btn-secondary me-1">
