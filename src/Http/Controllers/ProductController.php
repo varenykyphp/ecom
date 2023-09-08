@@ -67,10 +67,12 @@ class ProductController extends Controller
                 'sort_order' => $sort_order + 1,
                 'url' => '/images/products/' . $filename,
             ]);
+
+            $image->save();
+            $sort_order++;
         }
 
-        $image->save();
-        $sort_order++;
+        
 
         return redirect()->route('admin.products.index')->with('success', __('VarenykyECom::labels.added'));
     }
