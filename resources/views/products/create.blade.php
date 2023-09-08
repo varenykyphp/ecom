@@ -42,6 +42,15 @@
                 </div>
 
                 <div class="form-group mb-3">
+                    <label for="is_active" class="@if ($errors->has('is_active')) text-danger @endif">{{ __('VarenykyECom::labels.is_active') }}</label>
+                    <select id="is_active" name="is_active" class="form-control @if ($errors->has('is_active')) is-invalid @endif">
+                        <option value="">{{ __('varenyky::labels.choice') }}</option>
+                        <option value="1">{{ __('varenyky::labels.yes') }}</option>
+                        <option value="0">{{ __('varenyky::labels.no') }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
                     <label for="short_description" class="@if ($errors->has('short_description')) text-danger @endif">{{ __('VarenykyECom::labels.short_description') }}</label>
                     <input id="short_description" type="text" placeholder="{{ __('VarenykyECom::labels.short_description') }}..." name="short_description" class="form-control @if ($errors->has('short_description')) is-invalid @endif" value="{{ old('short_description') }}">
                 </div>
@@ -97,14 +106,9 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="url" class="@if ($errors->has('url')) text-danger @endif">{{ __('VarenykyECom::labels.image') }}</label>
+                    <label for="url" class="@if ($errors->has('url')) text-danger @endif">{{ __('VarenykyECom::labels.image')." ". __('VarenykyECom::labels.image') }}</label>
                     <input id="url" type="file" placeholder="{{ __('VarenykyECom::labels.url') }}..." name="url" class="form-control @if ($errors->has('url')) is-invalid @endif" value="{{ old('url') }}">
                 </div>
-
-                {{-- <div class="form-group mb-3">
-                    <label for="sort_order" class="@if ($errors->has('sort_order')) text-danger @endif">{{ __('VarenykyECom::labels.image')." ". __('VarenykyECom::labels.sort_order') }}</label>
-                    <input id="sort_order" type="number" placeholder="{{ __('VarenykyECom::labels.sort_order') }}..." name="sort_order" class="form-control @if ($errors->has('sort_order')) is-invalid @endif" value="{{ old('sort_order') }}">
-                </div> --}}
 
             </div>
         </div>

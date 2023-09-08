@@ -22,6 +22,7 @@ class Product extends Model
         'height',
         'weight',
         'stock',
+        'is_active'
     ];
 
     public function category()
