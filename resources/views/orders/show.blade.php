@@ -81,7 +81,6 @@
                     <th>{{ __('VarenykyECom::labels.product') }}</th>
                     <th>{{ __('VarenykyECom::labels.quantity') }}</th>
                     <th>{{ __('VarenykyECom::labels.subtotal') }}</th>
-                    <th>{{ __('VarenykyECom::labels.tax') }}</th>
                     <th>{{ __('VarenykyECom::labels.total') }}</th>
                 </thead>
                 <tbody>
@@ -95,8 +94,7 @@
                                 @endif
                             </td>
                             <td>{{ $row->quantity }}x</td>
-                            <td>&euro; {{ number_format($row->subtotal, 2, ",", ".") }}</td>
-                            <td>&euro; {{ number_format($row->tax, 2, ",", ".") }}</td>
+                            <td>&euro; {{ number_format($row->price, 2, ",", ".") }}</td>
                             <td>&euro; {{ number_format($row->total, 2, ",", ".") }}</td>
                         </tr>
                     @endforeach
