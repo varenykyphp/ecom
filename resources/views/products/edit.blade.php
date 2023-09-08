@@ -128,9 +128,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($images as $image)
-                            <tr>
-                                <td><img src="{{ $image->url }}" alt="image" style="width: 150px;"></td>
+                            @forelse ($images as $index => $image)
+                            <tr draggable="true" ondragstart="start()"  ondragover="dragover()">
+                                <td><img src="{{ $image->url }}" alt="image" style="width: 150px;" draggable="false"></td>
                                 <td align="right">
                                     <form action="{{ route('admin.product.image.delete', $image) }}" method="POST" style="display:inline">
                                         @csrf
@@ -138,6 +138,7 @@
                                         <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt me-2"></i>{{ __('varenyky::labels.delete') }}</button>
                                     </form>
                                 </td>
+                                <input type="hidden" name="row[{{ $image->id }}][sort_order]" class="sort_order" value="{{ $index }}">
                             </tr>
                             @empty
                             <tr>
@@ -146,6 +147,36 @@
                             @endforelse
                         </tbody>
                     </table>
+                    <script>
+                        var row;
+
+                        function start(){  
+                        row = event.target; 
+                        }
+
+                        function dragover(){
+                        var e = event;
+                        e.preventDefault(); 
+                        
+                        let children= Array.from(e.target.parentNode.parentNode.children);
+                        
+                        if(children.indexOf(e.target.parentNode)>children.indexOf(row))
+                            e.target.parentNode.after(row);
+                        else
+                            e.target.parentNode.before(row);
+
+                            updateSortOrder();
+                        }
+
+                        
+                        function updateSortOrder() {
+                            let rows = document.querySelectorAll('.table tbody tr');
+                    
+                            rows.forEach(function(row, index) {
+                                row.querySelector('.sort_order').value = index;
+                            });
+                        }
+                    </script>
                 </div>
 
             </div>

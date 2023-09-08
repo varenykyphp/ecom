@@ -90,26 +90,28 @@ class ProductController extends Controller
     {   
         $categories = Category::all();
         $brands = Brand::all();
-        $image = Image::where('product_id', $product->id)->first();
-        $images = Image::where('product_id', $product->id)->get();
+        $images = Image::where('product_id', $product->id)->orderBy('sort_order', 'asc')->get();
 
 
-        return view('VarenykyECom::products.edit', compact('product', 'categories', 'brands', 'image', 'images'));
+        return view('VarenykyECom::products.edit', compact('product', 'categories', 'brands', 'images'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Product $product): RedirectResponse
-    {
-        $update = array_filter($request->except(['_token', '_method', 'sort_order', 'url']));
+    {   
+        // dd($request->input('row'));
+        // dd($request->all());
+
+        $update = array_filter($request->except(['_token', '_method', 'sort_order', 'url', 'row']));
         $update['slug'] = Str::slug($request->input('name'));
 
         $this->repository->update($product->id, $update);
-        
-        $sort_order = Image::where('product_id', $product->id)->max('sort_order') ?? 0;
 
         if ($request->hasFile('url')) {
+            $sort_order = Image::where('product_id', $product->id)->max('sort_order') ?? 0;
+
             foreach ($request->file('url') as $file) {
                 $filename = date('Y_m_d_His') . '_' . str_replace(' ', '', $file->getClientOriginalName());
                 $file->move(public_path('images/products/'), $filename);
@@ -124,6 +126,13 @@ class ProductController extends Controller
                 $sort_order++;
             }
         }
+
+        foreach ($request->input('row') as $id => $row) {
+            $item = Image::findorfail($id);
+            $item->sort_order = $row['sort_order'];
+            $item->save();
+        }
+            
 
         return redirect()->route('admin.products.edit', $product->id)->with('success', __('VarenykyECom::labels.updated'));
     }
