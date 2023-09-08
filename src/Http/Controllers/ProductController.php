@@ -58,22 +58,21 @@ class ProductController extends Controller
         $sort_order = Image::where('product_id', $product->id)->max('sort_order') ?? 0;
     
         if ($request->hasFile('url')) {
-            $file = $request->url;
-            $filename = date('Y_m_d_His').'_'.str_replace(' ', '', $file->getClientOriginalName());
-            $file->move(public_path('images/products/'), $filename);
-            
-            $image = new Image([
-                'product_id' => $product->id,
-                'sort_order' => $sort_order + 1,
-                'url' => '/images/products/' . $filename,
-            ]);
-
-            $image->save();
-            $sort_order++;
+            foreach ($request->file('url') as $file) {
+                $filename = date('Y_m_d_His') . '_' . str_replace(' ', '', $file->getClientOriginalName());
+                $file->move(public_path('images/products/'), $filename);
+    
+                $image = new Image([
+                    'product_id' => $product->id,
+                    'sort_order' => $sort_order + 1,
+                    'url' => '/images/products/' . $filename,
+                ]);
+    
+                $image->save();
+                $sort_order++;
+            }
         }
-
         
-
         return redirect()->route('admin.products.index')->with('success', __('VarenykyECom::labels.added'));
     }
 

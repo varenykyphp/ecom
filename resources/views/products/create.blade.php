@@ -45,8 +45,8 @@
                     <label for="is_active" class="@if ($errors->has('is_active')) text-danger @endif">{{ __('VarenykyECom::labels.is_active') }}</label>
                     <select id="is_active" name="is_active" class="form-control @if ($errors->has('is_active')) is-invalid @endif">
                         <option value="">{{ __('varenyky::labels.choice') }}</option>
-                        <option value="1">{{ __('varenyky::labels.yes') }}</option>
-                        <option value="0">{{ __('varenyky::labels.no') }}</option>
+                        <option value="1">{{ __('VarenykyECom::labels.yes') }}</option>
+                        <option value="0">{{ __('VarenykyECom::labels.no') }}</option>
                     </select>
                 </div>
 
@@ -106,8 +106,8 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="url" class="@if ($errors->has('url')) text-danger @endif">{{ __('VarenykyECom::labels.image')." ". __('VarenykyECom::labels.image') }}</label>
-                    <input id="url" type="file" placeholder="{{ __('VarenykyECom::labels.url') }}..." name="url" class="form-control @if ($errors->has('url')) is-invalid @endif" value="{{ old('url') }}">
+                    <label for="url" class="@if ($errors->has('url')) text-danger @endif">{{ __('VarenykyECom::labels.images') }}</label>
+                    <input id="url" type="file" multiple placeholder="{{ __('VarenykyECom::labels.url') }}..." name="url[]" class="form-control @if ($errors->has('url')) is-invalid @endif" value="{{ old('url') }}">
                 </div>
 
             </div>
