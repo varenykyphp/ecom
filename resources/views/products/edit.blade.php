@@ -62,7 +62,7 @@
 
                 <div class="form-group mb-3">
                     <label for="description" class="@if ($errors->has('description')) text-danger @endif">{{ __('VarenykyECom::labels.description') }}</label>
-                    <textarea id="description" class="tiny form-control" placeholder="{{ __('VarenykyECom::labels.description') }}..." name="description" class="form-control @if ($errors->has('description')) is-invalid @endif" rows="4">{{ $product->description }}</textarea>
+                    <textarea id="description" placeholder="{{ __('VarenykyECom::labels.description') }}..." name="description" class="tiny form-control @if ($errors->has('description')) is-invalid @endif" rows="4">{{ $product->description }}</textarea>
                 </div>
 
                 <div class="form-group mb-3">
