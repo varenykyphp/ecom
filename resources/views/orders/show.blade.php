@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <td>{{ __('VarenykyECom::labels.payment') }}</td>
-                    <td align="right">Mollie</td>
+                    <td align="right">Stripe</td>
                 </tr>
             </table>
             <strong class="mt-3">Handling</strong>
