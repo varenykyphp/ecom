@@ -50,8 +50,8 @@
                     <label for="is_active" class="@if ($errors->has('is_active')) text-danger @endif">{{ __('VarenykyECom::labels.is_active') }}</label>
                     <select id="is_active" name="is_active" class="form-control @if ($errors->has('is_active')) is-invalid @endif">
                         <option value="">{{ __('varenyky::labels.choice') }}</option>
-                        <option value="1" {{ $product->is_active == 1 ? 'selected' : '' }}>{{ __('varenyky::labels.yes') }}</option>
-                        <option value="0" {{ $product->is_active == 0 ? 'selected' : '' }}>{{ __('varenyky::labels.no') }}</option>
+                        <option value="1" {{ $product->is_active == 1 ? 'selected' : '' }}>{{ __('VarenykyECom::labels.yes') }}</option>
+                        <option value="0" {{ $product->is_active == 0 ? 'selected' : '' }}>{{ __('VarenykyECom::labels.no') }}</option>
                     </select>
                 </div>
 
@@ -72,7 +72,7 @@
 
                 <div class="form-group mb-3">
                     <label for="sale_price" class="@if ($errors->has('sale_price')) text-danger @endif">{{ __('VarenykyECom::labels.sale_price') }}</label>
-                    <input id="sale_price" type="number" step="0.01" placeholder="{{ __('VarenykyECom::labels.sale_price') }}..." name="sale_price" class="form-control @if ($errors->has('sale_price')) is-invalid @endif" value="{{ number_format($product->price, 2) }}">
+                    <input id="sale_price" type="number" step="0.01" placeholder="{{ __('VarenykyECom::labels.sale_price') }}..." name="sale_price" class="form-control @if ($errors->has('sale_price')) is-invalid @endif" value="{{ number_format($product->sale_price, 2) }}">
                 </div>
 
                 <div class="form-group mb-3">

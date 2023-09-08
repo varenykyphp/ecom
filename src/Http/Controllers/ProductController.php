@@ -72,7 +72,7 @@ class ProductController extends Controller
                 $sort_order++;
             }
         }
-        
+
         return redirect()->route('admin.products.index')->with('success', __('VarenykyECom::labels.added'));
     }
 
@@ -102,9 +102,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product): RedirectResponse
     {   
-        // dd($request->input('row'));
-        // dd($request->all());
-
         $update = array_filter($request->except(['_token', '_method', 'sort_order', 'url', 'row']));
         $update['slug'] = Str::slug($request->input('name'));
 
@@ -128,10 +125,12 @@ class ProductController extends Controller
             }
         }
 
-        foreach ($request->input('row') as $id => $row) {
-            $item = Image::findorfail($id);
-            $item->sort_order = $row['sort_order'];
-            $item->save();
+        if ($request->has('row')) {
+            foreach ($request->input('row') as $id => $row) {
+                $item = Image::findorfail($id);
+                $item->sort_order = $row['sort_order'];
+                $item->save();
+            }
         }
             
 
