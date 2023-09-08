@@ -9,6 +9,7 @@
 
 @section('back-btn', route('admin.orders.index'))
 @section('content')
+    <div class="card border p-3">
     <div class="row">
         <div class="col-6 mb-3">
             <strong>Order information</strong>
@@ -102,5 +103,6 @@
                 </tbody>
             </table>
         </div>
+    </div>
     </div>
 @stop
