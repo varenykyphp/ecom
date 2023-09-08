@@ -11,18 +11,30 @@ class Customer extends Model
 {
     use HasFactory, Encryptable;
 
-    protected $encryptable= [
+    protected $fillable = [
         'company_name',
-        'name', 
-        'phone_number', 
+        'name',
+        'phone_number',
         'street',
-        'house_number', 
+        'house_number',
         'house_number_ex',
         'postalcode',
-        'city', 
+        'city',
         'country_id',
-        'user_id',    
+        'user_id',
     ];
+
+    protected $encryptable = [
+        'company_name',
+        'name',
+        'phone_number',
+        'street',
+        'house_number',
+        'house_number_ex',
+        'postalcode',
+        'city',
+    ];
+
     public function country()
     {
         return $this->belongsTo(Country::class);

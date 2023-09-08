@@ -18,22 +18,22 @@ class EComSearchEngineFactory extends SearchEngineFactory
 
     public function category(Category $category)
     {
-        $this->title = $category->name .' categorie of Ecom';
+        $this->title = $category->name .' | '.$this->settings['site-name'];
         $this->description = '';
     }
 
     public function brand(Brand $brand)
     {
-        $this->title = $brand->name .' brand of Ecom';
+        $this->title = $brand->name .' | '.$this->settings['site-name'];
         $this->description = '';
     }
-    
+
     public function product(Product $product)
     {
-        $this->title = $product->name .' | Ecom';
+        $this->title = $product->name .' | '.$product->category->name .' | '.$this->settings['site-name'];
 
         $image = '';
-        
+
         $getImg = $product->images->first();
         if (isset($getImg)) {
             $image = $getImg->url;
@@ -44,12 +44,12 @@ class EComSearchEngineFactory extends SearchEngineFactory
 
     public function cart()
     {
-        $this->title = 'Shoppincart | Ecom';
+        $this->title = 'Cart | '.$this->settings['site-name'];
     }
 
     public function checkout()
     {
-        $this->title = 'Checkout | Ecom';
+        $this->title = 'Checkout | '.$this->settings['site-name'];
     }
 
 }
