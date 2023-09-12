@@ -2,8 +2,10 @@
 
 namespace VarenykyECom\Services;
 
+use App\Models\User;
 use Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use VarenykyECom\Models\Customer;
 use VarenykyECom\Models\Order;
@@ -23,6 +25,13 @@ class OrderService
 
     public static function make(Request $request): Order
     {
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make(Str::random(12)),
+            'role' => 'ecom',
+        ]);
+
         $customer = new Customer;
         $customer->company_name = $request->input('company_name');
         $customer->name = $request->input('name');
@@ -33,7 +42,7 @@ class OrderService
         $customer->postalcode = $request->input('postalcode');
         $customer->city = $request->input('city');
         $customer->country_id = $request->input('country_id');
-        $customer->user_id = 1;
+        $customer->user_id = $user->id;
         $customer->save();
 
         $order = new Order;

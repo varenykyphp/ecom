@@ -2,6 +2,7 @@
 
 namespace VarenykyECom\Models;
 
+use App\Models\User;
 use VarenykyECom\Traits\Encryptable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -38,6 +39,11 @@ class Customer extends Model
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }
