@@ -66,5 +66,6 @@ return [
     'is_active' => 'Is Active',
     'yes' => 'Yes',
     'no' => 'No',
+    'state' => 'State',
 
 ];

@@ -21,6 +21,7 @@ class Customer extends Model
         'house_number_ex',
         'postalcode',
         'city',
+        'state',
         'country_id',
         'user_id',
     ];
@@ -34,6 +35,7 @@ class Customer extends Model
         'house_number_ex',
         'postalcode',
         'city',
+        'state',
     ];
 
     public function country()
@@ -45,5 +47,4 @@ class Customer extends Model
     {
         return $this->belongsTo(User::class);
     }
-
 }
