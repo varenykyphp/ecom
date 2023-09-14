@@ -41,7 +41,7 @@ class OrderService
         $customer->house_number = "";
         $customer->postalcode = $request->input('postalcode');
         $customer->city = $request->input('city');
-        $customer->state = $request->input('state_id');
+        $customer->state = $request->input('state');
         $customer->country_id = $request->input('country_id');
         $customer->user_id = $user->id;
         $customer->save();
